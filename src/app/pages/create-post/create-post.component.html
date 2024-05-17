@@ -17,7 +17,7 @@
 
                 <mat-form-field hintLabel="Max 5000 characters">
                     <!-- <mat-label>Enter some input</mat-label> -->
-                    <input placeholder="Content" matInput #input maxlength="5000">
+                    <input placeholder="Content" matInput #input formControlName="content" maxlength="5000">
                     <mat-hint align="end">{{input.value.length}}/5000</mat-hint>
                   </mat-form-field>
 
@@ -49,9 +49,11 @@
                 </mat-form-field>
 
                 <!-- Submit Button -->
-                <button mat-raised-button color="primary" 
-                style="background-color: pink; margin-left: 200px; border-radius: 10px; height: 50px;" 
+                <button mat-flat-button color="primary" style="background-color: pink; margin-left: 200px; border-radius: 10px; height: 50px;" 
+                (click)="createPost()">Create New Post</button>
+                <!-- <button mat-flat-button color="primary" style="background-color: pink; margin-left: 200px; border-radius: 10px; height: 50px;" 
                 [disabled]="!postForm.valid" (click)="createPost()">Create New Post</button>
+                 -->
             </form>
         </div>
     </mat-card-content>
