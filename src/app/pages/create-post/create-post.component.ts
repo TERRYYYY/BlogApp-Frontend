@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { PostService } from '../../service/post.service';
 
 @Component({
   selector: 'app-create-post',
@@ -23,6 +24,7 @@ export class CreatePostComponent {
     private fb: FormBuilder,
     private router: Router,
     private snackBar: MatSnackBar,
+    private postService: PostService,
   )
   {}
 
@@ -60,4 +62,15 @@ export class CreatePostComponent {
     }
   }
 
+  createPost() {
+    const data = this.postForm.value; // Gets the value of the form group
+    data.tags = this.tags; // Adds the tags array to the data object
+
+    this.postService.createNewPostService(data).subscribe(res => { // Calls the createNewPostService method from PostService
+      this.snackBar.open("Post Created Successfully!", "Ok");
+      this.router.navigateByUrl("/");
+    }, error => {
+      this.snackBar.open("Something went wrong", "Ok");
+    });
+  }
 }

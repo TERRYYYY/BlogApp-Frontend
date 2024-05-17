@@ -49,7 +49,9 @@
                 </mat-form-field>
 
                 <!-- Submit Button -->
-                <button mat-raised-button color="primary" style="background-color: pink; margin-left: 200px; border-radius: 10px; height: 50px;" [disabled]="!postForm.valid">Create New Post</button>
+                <button mat-raised-button color="primary" 
+                style="background-color: pink; margin-left: 200px; border-radius: 10px; height: 50px;" 
+                [disabled]="!postForm.valid" (click)="createPost()">Create New Post</button>
             </form>
         </div>
     </mat-card-content>
