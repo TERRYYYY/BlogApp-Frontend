@@ -20,4 +20,10 @@ export class PostService {
   getallPosts():Observable<any>{
     return this.http.get(BASIC_URL + 'api/posts');
   }
+
+  //Method that gets post by ID
+  getPostById(postId: number):Observable<any>{
+    return this.http.get(BASIC_URL + `api/posts/${postId}`);
+  }
+
 }
