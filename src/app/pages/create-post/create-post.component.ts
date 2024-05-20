@@ -69,9 +69,11 @@ export class CreatePostComponent {
 
     this.postService.createNewPostService(data).subscribe(res => { // Calls the createNewPostService method from PostService
       this.snackBar.open("Post Created Successfully!", "Ok");
+      console.log(res);
       this.router.navigateByUrl("/");
     }, error => {
       this.snackBar.open("Something went wrong", "Ok");
+      console.log(error);
     });
   }
 }

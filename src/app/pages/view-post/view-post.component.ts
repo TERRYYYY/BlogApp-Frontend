@@ -15,6 +15,7 @@ export class ViewPostComponent {
   //Variables
   postId = this.activatedRoute.snapshot.params['id'];
   postData: any;
+  comments: any;
 
   //Comment Form Group
   commentForm! : FormGroup
@@ -42,6 +43,7 @@ export class ViewPostComponent {
     this.postService.getPostById(this.postId).subscribe(res =>{
       this.postData = res;
       console.log(res);
+      this.getAllComments();
     },error =>{
       this.matSnackBar.open("Something went wrong", "Ok");
     })
@@ -58,15 +60,31 @@ export class ViewPostComponent {
   }
 
   //Method to publish a new comment
-  publishComment(){
+  publishComment() {
     const postedBy = this.commentForm.get('postedBy')?.value;
     const content = this.commentForm.get('content')?.value;
+  
+    this.commentService.createNewComment(this.postId, postedBy, content).subscribe(
+      res => {
+        this.matSnackBar.open("Comment Published", "Ok");
+        console.log(res);
+        this.getAllComments();
+      },
+      error => {
+        this.matSnackBar.open("Something went wrong!!!", "Ok");
+        console.error('Error:', error);
+      }
+    );
+  }
+  
 
-    this.commentService.createNewComment(this.postId, postedBy, content).subscribe(res=>{
-      this.matSnackBar.open("Comment Published", "Ok");
-      // this.commentForm.reset();
-    }, error=>{
-      this.matSnackBar.open("Something went wrong", "Ok");
+  //Method to get all comments of each post
+  getAllComments(){
+    this.commentService.getAllCommentsByPost(this.postId).subscribe(res=>{
+      this.comments = res;
+      console.log(res);
+    }, error =>{
+      this.matSnackBar.open("Something Went Wrong!", "Ok");	
     })
   }
 

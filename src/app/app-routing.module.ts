@@ -6,7 +6,7 @@ import { ViewPostComponent } from './pages/view-post/view-post.component';
 
 const routes: Routes = [
   {path: 'create-post', component: CreatePostComponent},
-  {path: 'view-all', component: ViewAllComponent},
+  {path: '', component: ViewAllComponent},
   {path: 'view-post/:id', component: ViewPostComponent},
 ];
 
