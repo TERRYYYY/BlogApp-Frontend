@@ -31,4 +31,9 @@ export class PostService {
     return this.http.put(BASIC_URL + `api/posts/${postId}/like` , {});
   }
 
+  //Method to update posts
+  updatePost(postId: number, post: any):Observable<any>{
+    return this.http.put(BASIC_URL + `api/posts/${postId}`, post);
+  }
+
 }
