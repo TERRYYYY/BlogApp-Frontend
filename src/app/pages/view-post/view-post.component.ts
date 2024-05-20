@@ -35,4 +35,14 @@ export class ViewPostComponent {
     })
   }
 
+  //Method to get post's like
+  likeThisPost() {
+    this.postService.likePost(this.postId).subscribe((res) => {
+      this.matSnackBar.open("Post Liked", "Ok");
+      this.getPostById();
+    }, (error) => {
+      this.matSnackBar.open("Something went wrong", "Ok");
+    })
+  }
+
 }
