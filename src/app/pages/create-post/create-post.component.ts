@@ -62,6 +62,7 @@ export class CreatePostComponent {
     }
   }
 
+  //Method that creates all posts
   createPost() {
     const data = this.postForm.value; // Gets the value of the form group
     data.tags = this.tags; // Adds the tags array to the data object
