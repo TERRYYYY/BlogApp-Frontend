@@ -2,10 +2,13 @@
     <mat-card>
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{item.name}}</mat-card-title>
+            <mat-card-title routerLink="/view-post/{{item.id}}" style="cursor: pointer;">{{item.name}}</mat-card-title>
             <mat-card-subtitle>Posted By: {{item.postedBy}} | Posted On: {{item.date | date: 'medium'}}</mat-card-subtitle>
-            <button mat-raised-button color="primary" style="margin-left: 150px;">{{item.viewCount}}
+            <button mat-raised-button color="primary" style="margin-left: 10px;">{{item.viewCount}}
                 <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <button mat-raised-button color="accent" style="margin-left: 20px;">{{item.likeCount}}
+                <mat-icon>favorite</mat-icon>
             </button>
         </mat-card-header>
 
@@ -14,7 +17,9 @@
                 <img mat-card-image [src]="item.img" class="post-img" alt="Card Image">
             </mat-grid-tile>
             <mat-grid-tile colspan="3" [rowspan]="1">
-                <mat-card-content>{{item.content.length > 600 ? item.content.substring(0, 600) + '...' : item.content}}</mat-card-content>
+                <mat-card-content>
+                    {{item.content}}
+                </mat-card-content>
             </mat-grid-tile>
 
         </mat-grid-list>
@@ -28,16 +33,21 @@
             <button mat-raised-button color="warn" style="margin-left: 7px;" (click)="deletePost(item.id)">
                 <mat-icon>delete_sweep</mat-icon>
             </button>
+
+            <!-- <button mat-raised-button color="primary" style="margin-left: 7px;" (click)="openDialog()" >
+                <mat-icon>delete</mat-icon>
+            </button> -->
+
+            <button mat-raised-button color="primary" style="margin-left: 290px;" routerLink="/view-post/{{item.id}}">View Post</button>
+
             
-            <button mat-raised-button color="accent" style="margin-left: 90px;">{{item.likeCount}}
-                <mat-icon>favorite</mat-icon>
-            </button>
+    
 
             <!-- <button mat-raised-button color="accent" style="margin-left: 5px;">{{item.viewCount}}
                 <mat-icon>remove_red_eye</mat-icon>
             </button> -->
 
-            <button mat-raised-button color="accent" style="margin-left: 5px;" routerLink="/view-post/{{item.id}}">View Post</button>
+            
         </mat-card-actions>
     </mat-card>
 </div>

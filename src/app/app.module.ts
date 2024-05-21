@@ -11,6 +11,8 @@ import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { ViewAllComponent } from './pages/view-all/view-all.component';
 import { ViewPostComponent } from './pages/view-post/view-post.component';
 import { UpdatePostComponent } from './pages/update-post/update-post.component';
+import { DeletePostDialogComponent } from './pages/delete-post-dialog/delete-post-dialog.component';
+import { DialogModule } from '@angular/cdk/dialog';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,10 @@ import { UpdatePostComponent } from './pages/update-post/update-post.component';
     CreatePostComponent,
     ViewAllComponent,
     ViewPostComponent,
-    UpdatePostComponent
+    UpdatePostComponent,
+    DeletePostDialogComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,

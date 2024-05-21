@@ -78,6 +78,7 @@ export class ViewPostComponent {
   deletePost(postId: number){
     this.postService.deletePost(postId).subscribe(res =>{
       console.log("Deleted Post Is: ", res);
+      this.matSnackBar.open("Post Deleted Successfully", "Ok");
       this.getAllPosts();
     })
   }
