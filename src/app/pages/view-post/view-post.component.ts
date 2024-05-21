@@ -16,6 +16,7 @@ export class ViewPostComponent {
   postId = this.activatedRoute.snapshot.params['id'];
   postData: any;
   comments: any;
+  allPosts: any;
 
   //Comment Form Group
   commentForm! : FormGroup
@@ -38,6 +39,19 @@ export class ViewPostComponent {
     })
   }
 
+  
+  //Method that handles HTTP requests to get all posts
+  getAllPosts(){
+    this.postService.getallPosts().subscribe(res =>{
+      console.log(res);
+      this.allPosts = res;
+    }, error =>{
+      this.matSnackBar.open("Something went wrong", "Ok");
+      console.log("All Posts error => ",error);
+    }
+  )
+  }
+
   //Method to get post by ID
   getPostById(){
     this.postService.getPostById(this.postId).subscribe(res =>{
@@ -45,7 +59,7 @@ export class ViewPostComponent {
       console.log(res);
       this.getAllComments();
     },error =>{
-      this.matSnackBar.open("Something went wrong", "Ok");
+      this.matSnackBar.open("This Post Not Found", "Ok");
     })
   }
 
@@ -58,6 +72,26 @@ export class ViewPostComponent {
       this.matSnackBar.open("Something went wrong", "Ok");
     })
   }
+
+
+  //Method to delete a post
+  deletePost(postId: number){
+    this.postService.deletePost(postId).subscribe(res =>{
+      console.log("Deleted Post Is: ", res);
+      this.getAllPosts();
+    })
+  }
+
+
+
+
+
+
+
+
+  //COMMENTS
+
+
 
   //Method to publish a new comment
   publishComment() {
@@ -87,5 +121,7 @@ export class ViewPostComponent {
       this.matSnackBar.open("Something Went Wrong!", "Ok");	
     })
   }
+
+
 
 }

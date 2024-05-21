@@ -36,12 +36,15 @@ export class UpdatePostComponent {
     })
   }
 
+  //Method to get post by ID
   getPostById(){
     this.service.getPostById(this.postId).subscribe(res =>{
       console.log(res);
       this.updatePostForm.patchValue(res);
     })
   }
+
+  //Method to update existing posts
 
   updateExistingPost(){
     this.service.updatePost(this.postId, this.updatePostForm.value).subscribe(res=>{

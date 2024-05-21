@@ -29,4 +29,12 @@ export class ViewAllComponent {
   )
   }
 
+   //Method to delete a post
+  deletePost(postId: number){
+    this.postService.deletePost(postId).subscribe(res =>{
+      console.log("Deleted Post Is: ", res);
+      this.getAllPosts();
+    })
+  }
+
 }
